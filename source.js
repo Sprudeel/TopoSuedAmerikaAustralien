@@ -16,42 +16,51 @@ var going = false;
 var correct = 0;
 var length;
 
+// Vars for Button Delay
+var delay = 1000;
+var lastClick = 0;
+
+var AallMere = ["Arafurasee", "Golf von Carpentaria", "Grosse Australische Bucht", "Grosses Barrier Riff", "Indischer Ozean", "Korallenmeer", "Ostaustralstrom", "Pazifischer Ozean", "Tasmansee", "Torres-Strasse", "Westaustralstrom"];
+
+var AminMere = ["Golf von Carpentaria", "Grosse Australische Bucht", "Grosses Barrier Riff", "Indischer Ozean", "Korallenmeer", "Pazifischer Ozean", "Tasmansee", "Torres-Strasse"];
 
 
-var allMere = ["Arafurasee", "Golf von Carpentaria", "Grosse Australische Bucht", "Grosses Barrier Riff", "Indischer Ozean", "Korallenmeer", "Ostaustralstrom", "Pazifischer Ozean", "Tasmansee", "Torres-Strasse", "Westaustralstrom"];
+var AallInseln = ["Kap York", "Kap-York-Halbinsel", "Neuguinea", "Neukaledonien", "Nordinsel", "Südinsel", "Tasmanien"];
 
-var minMere = ["Golf von Carpentaria", "Grosse Australische Bucht", "Grosses Barrier Riff", "Indischer Ozean", "Korallenmeer", "Pazifischer Ozean", "Tasmansee", "Torres-Strasse"];
-
-
-var allInseln = ["Kap York", "Kap-York-Halbinsel", "Neuguinea", "Neukaledonien", "Nordinsel", "Südinsel", "Tasmanien"];
-
-var minInseln = ["Kap York", "Kap-York-Halbinsel", "Neuguinea", "Neukaledonien", "Nordinsel", "Südinsel", "Tasmanien"];
+var AminInseln = ["Kap York", "Kap-York-Halbinsel", "Neuguinea", "Neukaledonien", "Nordinsel", "Südinsel", "Tasmanien"];
 
 
-var allBerge = ["Central Range", "Great Dividing Range", "Macdonnellkette", "Mount Cook", "Mount Kosciusko", "Puncak Jaya", "Ruapehu", "Sudirmangebirge", "Südliche Alpen"];
+var AallBerge = ["Central Range", "Great Dividing Range", "Macdonnellkette", "Mount Cook", "Mount Kosciusko", "Puncak Jaya", "Ruapehu", "Sudirmangebirge", "Südliche Alpen"];
 
-var minBerge = ["Great Dividing Range", "Mount Cook", "Mount Kosciusko", "Südliche Alpen"];
-
-
-var allFlusse = ["Darling", "Murray"];
-
-var minFlusse = ["Darling", "Murray"];
+var AminBerge = ["Great Dividing Range", "Mount Cook", "Mount Kosciusko", "Südliche Alpen"];
 
 
-var allSpecial = ["Arnhemland", "Gibsonwüste", "Grosse Sandwüste", "Grosse Victoriawüste", "Grosses Artesisches Becken", "Kimberley-Plateau", "Nullarborebene", "Simpsonwüste"];
+var AallFlusse = ["Darling", "Murray"];
 
-var minSpecial = ["Arnhemland", "Gibsonwüste", "Grosse Sandwüste", "Grosse Victoriawüste", "Simpsonwüste"];
-
-
-var allStaaten = ["Australien", "Fidschi", "Kiribati", "Marshallinseln", "Mikronesien", "Nauru", "Neuseeland", "Osttimor", "Palau", "Papua-Neuguinea", "Salomonen", "Samoa", "Tonga", "Tuvalu", "Vanuatu"];
-
-var minStaaten = ["Australien", "Fidschi", "Neuseeland", "Osttimor", "Papua-Neuguinea"];
+var AminFlusse = ["Darling", "Murray"];
 
 
-var allStadte = ["Adelaide", "Alice-Springs", "Brisbane", "Cairns", "Canberra", "Darwin", "Hobart", "Melbourne", "Perth", "Sydney", "Suva", "Bairiki", "Dalap-Uliga-Darrit", "Palikir", "Yaren", "Auckland", "Christchurch", "Dunedin", "Wellington", "Dili", "Koror", "Port Moresby", "Honiara", "Apia", "Nuku'alofa", "Vaiaku", "Port Vila"];
+var AallSpecial = ["Arnhemland", "Gibsonwüste", "Grosse Sandwüste", "Grosse Victoriawüste", "Grosses Artesisches Becken", "Kimberley-Plateau", "Nullarborebene", "Simpsonwüste"];
 
-var minStadte = ["Adelaide", "Alice-Springs", "Brisbane", "Cairns", "Canberra", "Darwin", "Hobart", "Melbourne", "Perth", "Sydney", "Auckland", "Christchurch", "Dunedin", "Wellington", "Port Moresby"];
+var AminSpecial = ["Arnhemland", "Gibsonwüste", "Grosse Sandwüste", "Grosse Victoriawüste", "Simpsonwüste"];
 
+
+var AallStaaten = ["Australien", "Fidschi", "Kiribati", "Marshallinseln", "Mikronesien", "Nauru", "Neuseeland", "Osttimor", "Palau", "Papua-Neuguinea", "Salomonen", "Samoa", "Tonga", "Tuvalu", "Vanuatu"];
+
+var AminStaaten = ["Australien", "Fidschi", "Neuseeland", "Osttimor", "Papua-Neuguinea"];
+
+
+var AallStadte = ["Adelaide", "Alice-Springs", "Brisbane", "Cairns", "Canberra", "Darwin", "Hobart", "Melbourne", "Perth", "Sydney", "Suva", "Bairiki", "Dalap-Uliga-Darrit", "Palikir", "Yaren", "Auckland", "Christchurch", "Dunedin", "Wellington", "Dili", "Koror", "Port Moresby", "Honiara", "Apia", "Nuku'alofa", "Vaiaku", "Port Vila"];
+
+var AminStadte = ["Adelaide", "Alice-Springs", "Brisbane", "Cairns", "Canberra", "Darwin", "Hobart", "Melbourne", "Perth", "Sydney", "Auckland", "Christchurch", "Dunedin", "Wellington", "Port Moresby"];
+
+
+
+// Check which Hash is in place
+
+if(location.hash == "") {
+    location.hash = "australien";
+}
 
 
 function setMode(inputmode, buttonId) {
@@ -91,53 +100,56 @@ function setSubject(inputsubject, buttonId) {
     // set the subject in var
     subject = inputsubject;
 
-    if(document.getElementById(2004).checked) {
-        switch(inputsubject) {
-            case "stadte":  
-                arrayAnswers = minStadte;
-                break;
-            case "staaten":  
-                arrayAnswers = minStaaten;
-                break;
-            case "flusse":
-                arrayAnswers = minFlusse;
-                break;
-            case "inseln":
-                arrayAnswers = minInseln;
-                break;
-            case "berge":
-                arrayAnswers = minBerge;
-                break;
-            case "meere":
-                arrayAnswers = minMere;
-                break;
-            case "special":
-                arrayAnswers = minSpecial;
-                break;
-        }
-    } else if(!document.getElementById(2004).checked) {
-        switch(inputsubject) {
-            case "stadte":  
-                arrayAnswers = allStadte;
-                break;
-            case "staaten":  
-                arrayAnswers = allStaaten;
-                break;
-            case "flusse":
-                arrayAnswers = allFlusse;
-                break;
-            case "inseln":
-                arrayAnswers = allInseln;
-                break;
-            case "berge":
-                arrayAnswers = allBerge;
-                break;
-            case "meere":
-                arrayAnswers = allMere;
-                break;
-            case "special":
-                arrayAnswers = allSpecial;
-                break;
+    if (location.hash === "#australien") {
+        console.log("Hello!");
+        if(document.getElementById(2004).checked) {
+            switch(inputsubject) {
+                case "stadte":  
+                    arrayAnswers = AminStadte;
+                    break;
+                case "staaten":  
+                    arrayAnswers = AminStaaten;
+                    break;
+                case "flusse":
+                    arrayAnswers = AminFlusse;
+                    break;
+                case "inseln":
+                    arrayAnswers = AminInseln;
+                    break;
+                case "berge":
+                    arrayAnswers = AminBerge;
+                    break;
+                case "meere":
+                    arrayAnswers = AminMere;
+                    break;
+                case "special":
+                    arrayAnswers = AminSpecial;
+                    break;
+            }
+        } else if(!document.getElementById(2004).checked) {
+            switch(inputsubject) {
+                case "stadte":  
+                    arrayAnswers = AallStadte;
+                    break;
+                case "staaten":  
+                    arrayAnswers = AallStaaten;
+                    break;
+                case "flusse":
+                    arrayAnswers = AallFlusse;
+                    break;
+                case "inseln":
+                    arrayAnswers = AallInseln;
+                    break;
+                case "berge":
+                    arrayAnswers = AallBerge;
+                    break;
+                case "meere":
+                    arrayAnswers = AallMere;
+                    break;
+                case "special":
+                    arrayAnswers = AallSpecial;
+                    break;
+            }
         }
     }
     
@@ -318,35 +330,48 @@ function Game() {
     }
 }
 
+// Check if Solution is Correct
 function checkSolution() {
 
+    // If answer is correct go here
     if(currentAnswer.toLowerCase() == document.getElementById(420).value.toLowerCase()) {
         
+        // Block Clicks while evaluation
+        if (lastClick >= (Date.now() - delay)) {
+            lastClick = Date.now();
+            return lastClick;
+        }
+        lastClick = Date.now();
+
+        // Set Box Shadows to Green
         document.getElementById(1000).style.boxShadow = "0px 0px 10px 10px #2aaf1eb2";
         document.getElementById(420).style.boxShadow = "0px 0px 10px 10px #2aaf1eb2";
+
+        // Show Correct Answer on Correct Answer Board
         showCorrect(currentAnswer);
+
+        // Update Correct Var
         correct++;
 
+        // Start New Game
         setTimeout(() => {
             Game();
         }, 1000); 
 
+        // Delete Last Question while in Learm mode
         if (mode == "learn") {
             arrayAnswers.splice((randomNumber - 1), 1);
     
             return arrayAnswers;
         }
+        // If answer is incorrect
     } else {
+        // Set Box Shadow to Red
         document.getElementById(1000).style.boxShadow = "0px 0px 10px 10px #b91313ce";
         document.getElementById(420).style.boxShadow = "0px 0px 10px 10px #b91313ce";
     }
 
-    if (mode == "learn") {
-        arrayAnswers.splice((randomNumber - 1), 1);
-
-        return arrayAnswers;
-    }
-
+    
 }
 
 
@@ -564,4 +589,89 @@ document.addEventListener("keypress", function(event) {
 })
 
 
+function switchMode() {
+
+    if(location.hash === "#australien") {
+
+        // Change clicker button
+
+        // Block Clicks while evaluation
+        if (lastClick >= (Date.now() - delay)) {
+            lastClick = Date.now();
+            return lastClick;
+        }
+        lastClick = Date.now();
+
+
+        // Animation
+        for (let i = 0; i < 10; i++) {
+            document.getElementById(5000 + i).style.transform = "translateX(-100%)"
+            document.getElementById(5000 + i).style.display = "block"
+            
+        }
+
+        var animation = [
+            {transform: "translateX(0%)"}
+    
+        ];
+        var timing = {
+            duration: 500,
+            fill: 'forwards',
+            iterations: 1
+        }
+
+        setTimeout(() => {document.getElementById(5000).animate(animation, timing);}, 500);
+        setTimeout(() => {document.getElementById(5001).animate(animation, timing);}, 600);
+        setTimeout(() => {document.getElementById(5002).animate(animation, timing);}, 700);
+        setTimeout(() => {document.getElementById(5003).animate(animation, timing);}, 800);
+        setTimeout(() => {document.getElementById(5004).animate(animation, timing);}, 900);
+        setTimeout(() => {document.getElementById(5005).animate(animation, timing);}, 1000);
+        setTimeout(() => {document.getElementById(5006).animate(animation, timing);}, 1100);
+        setTimeout(() => {document.getElementById(5007).animate(animation, timing);}, 1200);
+        setTimeout(() => {document.getElementById(5008).animate(animation, timing);}, 1300);
+        setTimeout(() => {document.getElementById(5009).animate(animation, timing);}, 1400);
+        setTimeout(() => {document.getElementById(5010).animate(animation, timing);}, 1500);
+        
+        setTimeout(() => {
+            document.getElementById(4000).innerHTML = "Topo Australien";
+            document.getElementById(6000).innerHTML = "Topo Südamerika";
+            document.getElementById(1000).src = "images/empty2.png";
+            document.getElementById(1000).style.height = "60vh";
+            document.getElementById(1000).style.width = "auto";
+            
+            var animation2 = [
+                {transform: "translateX(100%)"}
+        
+            ];
+            var timing2 = {
+                duration: 500,
+                fill: 'forwards',
+                iterations: 1
+            }
+            
+            setTimeout(() => {document.getElementById(5000).animate(animation2, timing2);}, 500);
+            setTimeout(() => {document.getElementById(5001).animate(animation2, timing2);}, 600);
+            setTimeout(() => {document.getElementById(5002).animate(animation2, timing2);}, 700);
+            setTimeout(() => {document.getElementById(5003).animate(animation2, timing2);}, 800);
+            setTimeout(() => {document.getElementById(5004).animate(animation2, timing2);}, 900);
+            setTimeout(() => {document.getElementById(5005).animate(animation2, timing2);}, 1000);
+            setTimeout(() => {document.getElementById(5006).animate(animation2, timing2);}, 1100);
+            setTimeout(() => {document.getElementById(5007).animate(animation2, timing2);}, 1200);
+            setTimeout(() => {document.getElementById(5008).animate(animation2, timing2);}, 1300);
+            setTimeout(() => {document.getElementById(5009).animate(animation2, timing2);}, 1400);
+            setTimeout(() => {document.getElementById(5010).animate(animation2, timing2);}, 1500);
+
+
+            setTimeout(() => {
+                for (let i = 0; i < 10; i++) {
+                    document.getElementById(5000 + i).style.display = "none";
+                }
+            }, 2000);
+
+
+        }, 1500)
+        location.hash = "#suedamerika"
+    }
+}
+location.hash = "#australien"
 function closeOverlay() {document.getElementById("overlay").style.display = "none";}

@@ -431,3 +431,80 @@ input {
       padding: 0.5vw;
       border-radius: 8px;
   }
+
+
+  .switchmode {
+    text-align: center;
+    margin: 2%;
+    margin-bottom: 5%;
+    margin-top: 10%;
+    padding: 3px;
+    border-radius: 5px;
+    cursor: pointer;
+    border-style: solid;
+    border-width: 2px;
+    border-color: black;
+}
+.switchmode:hover {
+    background-color: black;
+    color: white;
+}
+
+
+.transition {
+    background-color: white;
+    position: absolute;
+    width: 100vw;
+    height: 10vh;
+    display: none;
+}
+.tr1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.tr2 {
+    position: absolute;
+    top: 10vh;
+    left: 0;
+}
+.tr3 {
+    position: absolute;
+    top: 20vh;
+    left: 0;
+}
+.tr4 {
+    position: absolute;
+    top: 30vh;
+    left: 0;
+}
+.tr5 {
+    position: absolute;
+    top: 40vh;
+    left: 0;
+}
+.tr6 {
+    position: absolute;
+    top: 50vh;
+    left: 0;
+}
+.tr7 {
+    position: absolute;
+    top: 60vh;
+    left: 0;
+}
+.tr8 {
+    position: absolute;
+    top: 70vh;
+    left: 0;
+}
+.tr9 {
+    position: absolute;
+    top: 80vh;
+    left: 0;
+}
+.tr10 {
+    position: absolute;
+    top: 90vh;
+    left: 0;
+}
