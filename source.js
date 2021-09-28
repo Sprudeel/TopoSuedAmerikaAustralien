@@ -56,10 +56,20 @@ var AminStadte = ["Adelaide", "Alice-Springs", "Brisbane", "Cairns", "Canberra",
 
 
 
+
+var SallStaaten = ["Argentinien", "Bolivien", "Brasilien", "Chile", "Ecuador", "Franz. Guayana", "Guyana", "Kolumbien", "Paraguay", "Peru", "Suriname", "Uruguay", "Venezuela"];
+var SminStaaten = ["Argentinien", "Bolivien", "Brasilien", "Chile", "Ecuador", "Franz. Guayana", "Guyana", "Kolumbien", "Paraguay", "Peru", "Suriname", "Uruguay", "Venezuela"];
+
 // Check which Hash is in place
 
 if(location.hash == "") {
-    location.hash = "australien";
+    location.hash = "#australien";
+} else if(location.hash === "#suedamerika") {
+    document.getElementById(4000).innerHTML = "Topo Australien";
+            document.getElementById(6000).innerHTML = "Topo Südamerika";
+            document.getElementById(1000).src = "images/empty2.png";
+            document.getElementById(1000).style.height = "60vh";
+            document.getElementById(1000).style.width = "auto";
 }
 
 
@@ -101,7 +111,6 @@ function setSubject(inputsubject, buttonId) {
     subject = inputsubject;
 
     if (location.hash === "#australien") {
-        console.log("Hello!");
         if(document.getElementById(2004).checked) {
             switch(inputsubject) {
                 case "stadte":  
@@ -151,9 +160,59 @@ function setSubject(inputsubject, buttonId) {
                     break;
             }
         }
+    } else if (location.hash == "#suedamerika") {
+
+        if(document.getElementById(2004).checked) {
+            switch(inputsubject) {
+                case "stadte":  
+                    arrayAnswers = AminStadte;
+                    break;
+                case "staaten":  
+                    arrayAnswers = SminStaaten;
+                    break;
+                case "flusse":
+                    arrayAnswers = AminFlusse;
+                    break;
+                case "inseln":
+                    arrayAnswers = AminInseln;
+                    break;
+                case "berge":
+                    arrayAnswers = AminBerge;
+                    break;
+                case "meere":
+                    arrayAnswers = AminMere;
+                    break;
+                case "special":
+                    arrayAnswers = AminSpecial;
+                    break;
+            }
+        } else if(!document.getElementById(2004).checked) {
+            switch(inputsubject) {
+                case "stadte":  
+                    arrayAnswers = AallStadte;
+                    break;
+                case "staaten":  
+                    arrayAnswers = SallStaaten;
+                    break;
+                case "flusse":
+                    arrayAnswers = AallFlusse;
+                    break;
+                case "inseln":
+                    arrayAnswers = AallInseln;
+                    break;
+                case "berge":
+                    arrayAnswers = AallBerge;
+                    break;
+                case "meere":
+                    arrayAnswers = AallMere;
+                    break;
+                case "special":
+                    arrayAnswers = AallSpecial;
+                    break;
+        }
     }
-    
-    
+}
+ 
 
 
     
@@ -212,7 +271,11 @@ function Game() {
 
 
         setTimeout(() => {
-            document.getElementById(1000).src = "images/" + subject + "/" +  picturename + ".jpg"
+            if(location.hash == "#australien") {
+                document.getElementById(1000).src = "images/" + subject + "/" +  picturename + ".jpg"
+            } else if(location.hash === "#suedamerika") {
+                document.getElementById(1000).src = "images/samerika/" + subject + "/" +  picturename + ".jpg"
+            }
         }, 200); 
         
         
@@ -277,9 +340,12 @@ function Game() {
 
 
         setTimeout(() => {
-            document.getElementById(1000).src = "images/" + subject + "/" +  picturename + ".jpg"
+            if(location.hash == "#australien") {
+                document.getElementById(1000).src = "images/" + subject + "/" +  picturename + ".jpg"
+            } else if(location.hash === "#suedamerika") {
+                document.getElementById(1000).src = "images/samerika/" + subject + "/" +  picturename + ".jpg"
+            }
         }, 200); 
-        
         
 
         
@@ -321,7 +387,11 @@ function Game() {
         started = true;
 
         setTimeout(() => {
-            document.getElementById(1000).src = "images/" + subject + "/" +  picturename + ".jpg"
+            if(location.hash == "#australien") {
+                document.getElementById(1000).src = "images/" + subject + "/" +  picturename + ".jpg"
+            } else if(location.hash === "#suedamerika") {
+                document.getElementById(1000).src = "images/samerika/" + subject + "/" +  picturename + ".jpg"
+            }
         }, 200); 
 
         
@@ -665,13 +735,96 @@ function switchMode() {
             setTimeout(() => {
                 for (let i = 0; i < 10; i++) {
                     document.getElementById(5000 + i).style.display = "none";
+                    document.getElementById(5000 + i).style.transform = "translateX(0%)";
                 }
-            }, 2000);
+            }, 5000);
 
 
-        }, 1500)
+        }, 2000)
         location.hash = "#suedamerika"
+    } else if (location.hash === "#suedamerika") {
+
+            // Change clicker button
+
+        // Block Clicks while evaluation
+        if (lastClick >= (Date.now() - delay)) {
+            lastClick = Date.now();
+            return lastClick;
+        }
+        lastClick = Date.now();
+
+
+        // Animation
+        for (let i = 0; i < 10; i++) {
+            document.getElementById(5000 + i).style.transform = "translateX(-100%)"
+            document.getElementById(5000 + i).style.display = "block"
+            
+        }
+
+        var animation = [
+            {transform: "translateX(0%)"}
+    
+        ];
+        var timing = {
+            duration: 500,
+            fill: 'forwards',
+            iterations: 1
+        }
+
+        setTimeout(() => {document.getElementById(5000).animate(animation, timing);}, 500);
+        setTimeout(() => {document.getElementById(5001).animate(animation, timing);}, 600);
+        setTimeout(() => {document.getElementById(5002).animate(animation, timing);}, 700);
+        setTimeout(() => {document.getElementById(5003).animate(animation, timing);}, 800);
+        setTimeout(() => {document.getElementById(5004).animate(animation, timing);}, 900);
+        setTimeout(() => {document.getElementById(5005).animate(animation, timing);}, 1000);
+        setTimeout(() => {document.getElementById(5006).animate(animation, timing);}, 1100);
+        setTimeout(() => {document.getElementById(5007).animate(animation, timing);}, 1200);
+        setTimeout(() => {document.getElementById(5008).animate(animation, timing);}, 1300);
+        setTimeout(() => {document.getElementById(5009).animate(animation, timing);}, 1400);
+        setTimeout(() => {document.getElementById(5010).animate(animation, timing);}, 1500);
+        
+        setTimeout(() => {
+            document.getElementById(4000).innerHTML = "Topo Südamerika";
+            document.getElementById(6000).innerHTML = "Topo Australien";
+            document.getElementById(1000).src = "images/empty.png";
+            document.getElementById(1000).style.width = "50vw";
+            document.getElementById(1000).style.height = "auto";
+            
+
+            var animation2 = [
+                {transform: "translateX(100%)"}
+        
+            ];
+            var timing2 = {
+                duration: 500,
+                fill: 'forwards',
+                iterations: 1
+            }
+            
+            setTimeout(() => {document.getElementById(5000).animate(animation2, timing2);}, 500);
+            setTimeout(() => {document.getElementById(5001).animate(animation2, timing2);}, 600);
+            setTimeout(() => {document.getElementById(5002).animate(animation2, timing2);}, 700);
+            setTimeout(() => {document.getElementById(5003).animate(animation2, timing2);}, 800);
+            setTimeout(() => {document.getElementById(5004).animate(animation2, timing2);}, 900);
+            setTimeout(() => {document.getElementById(5005).animate(animation2, timing2);}, 1000);
+            setTimeout(() => {document.getElementById(5006).animate(animation2, timing2);}, 1100);
+            setTimeout(() => {document.getElementById(5007).animate(animation2, timing2);}, 1200);
+            setTimeout(() => {document.getElementById(5008).animate(animation2, timing2);}, 1300);
+            setTimeout(() => {document.getElementById(5009).animate(animation2, timing2);}, 1400);
+            setTimeout(() => {document.getElementById(5010).animate(animation2, timing2);}, 1500);
+
+
+            setTimeout(() => {
+                for (let i = 0; i < 10; i++) {
+                    document.getElementById(5000 + i).style.display = "none";
+                    document.getElementById(5000 + i).style.transform = "translateX(0%)";
+
+                }
+            }, 3500);
+
+
+        }, 2000)
+        location.hash = "#australien"
     }
 }
-location.hash = "#australien"
 function closeOverlay() {document.getElementById("overlay").style.display = "none";}

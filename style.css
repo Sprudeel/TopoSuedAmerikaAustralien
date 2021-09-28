@@ -18,11 +18,11 @@
 }
 .version {
     flex: 1;
-    font-size: 15px;
+    font-size: 12px;
 }
 .name {
     flex: 5;
-    font-size: 30px;
+    font-size: 50px;
     font-weight: bold;
     text-align: center;
 }
