@@ -15,10 +15,10 @@ var started = false;
 var going = false;
 var correct = 0;
 var length;
-
-// Vars for Button Delay
 var delay = 1000;
 var lastClick = 0;
+
+
 
 var AallMere = ["Arafurasee", "Golf von Carpentaria", "Grosse Australische Bucht", "Grosses Barrier Riff", "Indischer Ozean", "Korallenmeer", "Ostaustralstrom", "Pazifischer Ozean", "Tasmansee", "Torres-Strasse", "Westaustralstrom"];
 
@@ -60,16 +60,41 @@ var AminStadte = ["Adelaide", "Alice-Springs", "Brisbane", "Cairns", "Canberra",
 var SallStaaten = ["Argentinien", "Bolivien", "Brasilien", "Chile", "Ecuador", "Franz. Guayana", "Guyana", "Kolumbien", "Paraguay", "Peru", "Suriname", "Uruguay", "Venezuela"];
 var SminStaaten = ["Argentinien", "Bolivien", "Brasilien", "Chile", "Ecuador", "Franz. Guayana", "Guyana", "Kolumbien", "Paraguay", "Peru", "Suriname", "Uruguay", "Venezuela"];
 
+
+var SallStadte = ["Buenos Aires", "Córdoba", "Mendoza", "Rosario", "La Paz", "Sucre", "Santa Cruz", "Belém", "Belo Horizonte", "Brasilia", "Fortaleza", "Manaus", "Recife", "Rio de Janeiro", "Salvador", "São Paulo", "Santiago de Chile", "Valparaíso", "Guayaquil", "Quito", "Cayenne", "Georgetown", "Barranquilla", "Bogotá", "Cali", "Cartagena", "Medellin", "Asunción", "Arequipa", "Callao", "Lima", "Trujillo", "Paramaribo", "Montevideo", "Barquisimeto", "Caracas", "Maracaibo", "Valencia"];
+var SminStadte = ["Buenos Aires", "Córdoba", "Mendoza", "Rosario", "La Paz", "Sucre", "Belém", "Belo Horizonte", "Brasilia", "Fortaleza", "Manaus", "Recife", "Rio de Janeiro", "Salvador", "São Paulo", "Santiago de Chile", "Guayaquil", "Quito", "Cayenne", "Georgetown", "Bogotá", "Cali", "Cartagena", "Medellin", "Asunción", "Lima", "Paramaribo", "Montevideo", "Caracas", "Maracaibo"];
+
+
+var SallMeere = ["Atlantischer Ozean", "Brasilienstrom", "Humboldt-Strom", "Karibisches Meer", "Pazifischer Ozean", "Rio de la Plata", "Süd-Aequatorialstrom"];
+var SminMeere = ["Atlantischer Ozean", "Humboldt-Strom", "Karibisches Meer", "Pazifischer Ozean", "Rio de la Plata"];
+
+
+var SallInseln = ["Falkland-Inseln", "Feuerland", "Galápagos-Inseln", "Kap Hoorn"];
+var SminInseln = ["Falkland-Inseln", "Feuerland", "Kap Hoorn"];
+
+
+var SallBerge = ["Aconcagua", "Anden", "Bergland von Guayana", "Brasilianisches Bergland", "Chimborazo", "Cotopaxi"];
+var SminBerge = ["Aconcagua", "Anden", "Bergland von Guayana", "Brasilianisches Bergland"];
+
+var SminFlusse = ["Amazonas", "Paraguay", "Paraná", "Orinoco", "Rio São Francisco", "Titicaca-See"];
+var SallFlusse = ["Amazonas", "Paraguay", "Paraná", "Orinoco", "Rio São Francisco", "Titicaca-See"];
+
+var SallSpecial = ["Altiplano", "Amazonasbecken", "Atacama Wüste", "Gran Chaco", "Mato Grosso", "Pampa", "Patagonien"];
+var SminSpecial = ["Altiplano", "Amazonasbecken", "Atacama Wüste", "Gran Chaco", "Mato Grosso", "Pampa", "Patagonien"];
+
 // Check which Hash is in place
 
 if(location.hash == "") {
     location.hash = "#australien";
 } else if(location.hash === "#suedamerika") {
-    document.getElementById(4000).innerHTML = "Topo Australien";
+            document.getElementById(4000).innerHTML = "Topo Australien";
             document.getElementById(6000).innerHTML = "Topo Südamerika";
             document.getElementById(1000).src = "images/empty2.png";
             document.getElementById(1000).style.height = "60vh";
             document.getElementById(1000).style.width = "auto";
+            document.getElementById(0).style.backgroundImage = "url('images/bg2.jpg')"
+            document.getElementById(0).style.backgroundPositionY = "-45vh";
+            resetAll();
 }
 
 
@@ -165,49 +190,49 @@ function setSubject(inputsubject, buttonId) {
         if(document.getElementById(2004).checked) {
             switch(inputsubject) {
                 case "stadte":  
-                    arrayAnswers = AminStadte;
+                    arrayAnswers = SminStadte;
                     break;
                 case "staaten":  
                     arrayAnswers = SminStaaten;
                     break;
                 case "flusse":
-                    arrayAnswers = AminFlusse;
+                    arrayAnswers = SminFlusse;
                     break;
                 case "inseln":
-                    arrayAnswers = AminInseln;
+                    arrayAnswers = SminInseln;
                     break;
                 case "berge":
-                    arrayAnswers = AminBerge;
+                    arrayAnswers = SminBerge;
                     break;
                 case "meere":
-                    arrayAnswers = AminMere;
+                    arrayAnswers = SminMeere;
                     break;
                 case "special":
-                    arrayAnswers = AminSpecial;
+                    arrayAnswers = SminSpecial;
                     break;
             }
         } else if(!document.getElementById(2004).checked) {
             switch(inputsubject) {
                 case "stadte":  
-                    arrayAnswers = AallStadte;
+                    arrayAnswers = SallStadte;
                     break;
                 case "staaten":  
                     arrayAnswers = SallStaaten;
                     break;
                 case "flusse":
-                    arrayAnswers = AallFlusse;
+                    arrayAnswers = SallFlusse;
                     break;
                 case "inseln":
-                    arrayAnswers = AallInseln;
+                    arrayAnswers = SallInseln;
                     break;
                 case "berge":
-                    arrayAnswers = AallBerge;
+                    arrayAnswers = SallBerge;
                     break;
                 case "meere":
-                    arrayAnswers = AallMere;
+                    arrayAnswers = SallMeere;
                     break;
                 case "special":
-                    arrayAnswers = AallSpecial;
+                    arrayAnswers = SallSpecial;
                     break;
         }
     }
@@ -245,7 +270,12 @@ function Game() {
 
     // ENDLESS MODE
     if(mode === "endless") {
+
+        if(location.hash === "#australien") {
         document.getElementById(1000).src = "images/loading.jpg";
+        } else {
+            document.getElementById(1000).src = "images/loading2.jpg";
+        }
         
         randomNumber = Math.floor(Math.random() * arrayAnswers.length + 1);
 
@@ -314,7 +344,11 @@ function Game() {
             started = true;
         }
 
-        document.getElementById(1000).src = "images/loading.jpg";
+        if(location.hash === "#australien") {
+            document.getElementById(1000).src = "images/loading.jpg";
+        } else {
+            document.getElementById(1000).src = "images/loading2.jpg";
+        }
         
         randomNumber = Math.floor(Math.random() * arrayAnswers.length + 1);
 
@@ -340,7 +374,7 @@ function Game() {
 
 
         setTimeout(() => {
-            if(location.hash == "#australien") {
+            if(location.hash === "#australien") {
                 document.getElementById(1000).src = "images/" + subject + "/" +  picturename + ".jpg"
             } else if(location.hash === "#suedamerika") {
                 document.getElementById(1000).src = "images/samerika/" + subject + "/" +  picturename + ".jpg"
@@ -359,7 +393,11 @@ function Game() {
 
 
         if(correct == length) {
-            document.getElementById(1000).src = "images/finish.jpg";
+            if(location.hash == "#australien") {
+                document.getElementById(1000).src = "images/finished.jpg"
+            } else if(location.hash === "#suedamerika") {
+                document.getElementById(1000).src = "images/finished2.jpg"
+            }
             document.getElementById(333).innerHTML = "Korrekt gelöst " + correct + "/" + length;
             return last, randomNumber, currentAnswer;
         }
@@ -367,7 +405,11 @@ function Game() {
         document.getElementById(333).innerHTML = "Korrekt gelöst " + correct + "/" + length;
 
 
-        document.getElementById(1000).src = "images/loading.jpg";
+        if(location.hash === "#australien") {
+            document.getElementById(1000).src = "images/loading.jpg";
+            } else {
+                document.getElementById(1000).src = "images/loading2.jpg";
+            }
 
         randomNumber = Math.floor(Math.random() * arrayAnswers.length + 1);
 
@@ -666,7 +708,7 @@ function switchMode() {
         // Change clicker button
 
         // Block Clicks while evaluation
-        if (lastClick >= (Date.now() - delay)) {
+        if (lastClick >= (Date.now() - (delay*4))) {
             lastClick = Date.now();
             return lastClick;
         }
@@ -708,6 +750,9 @@ function switchMode() {
             document.getElementById(1000).src = "images/empty2.png";
             document.getElementById(1000).style.height = "60vh";
             document.getElementById(1000).style.width = "auto";
+            document.getElementById(0).style.backgroundImage = "url('images/bg2.jpg')"
+            document.getElementById(0).style.backgroundPositionY = "-45vh";
+            resetAll();
             
             var animation2 = [
                 {transform: "translateX(100%)"}
@@ -738,16 +783,16 @@ function switchMode() {
                     document.getElementById(5000 + i).style.transform = "translateX(0%)";
                 }
             }, 5000);
-
+            
+        location.hash = "#suedamerika"
 
         }, 2000)
-        location.hash = "#suedamerika"
     } else if (location.hash === "#suedamerika") {
 
             // Change clicker button
 
         // Block Clicks while evaluation
-        if (lastClick >= (Date.now() - delay)) {
+        if (lastClick >= (Date.now() - (delay*4))) {
             lastClick = Date.now();
             return lastClick;
         }
@@ -789,6 +834,11 @@ function switchMode() {
             document.getElementById(1000).src = "images/empty.png";
             document.getElementById(1000).style.width = "50vw";
             document.getElementById(1000).style.height = "auto";
+            document.getElementById(0).style.backgroundImage = "url('images/bg.jpg')"
+            document.getElementById(0).style.backgroundPositionY = "0vh";
+            resetAll();
+
+            
             
 
             var animation2 = [
@@ -822,9 +872,37 @@ function switchMode() {
                 }
             }, 3500);
 
+            location.hash = "#australien"
 
         }, 2000)
-        location.hash = "#australien"
+
+        return mode, subject, randomint, arrayAnswers, currentAnswer, last, started, going, correct
     }
 }
+
+function resetAll() {
+    mode = null;
+            subject = null;
+            randomint = null;
+            arrayAnswers = [];
+            currentAnswer = null;
+            last = 1;
+            started = false;
+            going = false;
+            correct = 0;
+            document.getElementById(222).className = " ";
+            document.getElementById(222).innerHTML = "<button class='submit' onclick='showSolution()'>Lösung Anzeigen</button>";
+            document.getElementById(500).innerHTML = "<p id='502' style='color: red; text-align: center;'>keine</p><p id=501></p>";
+            for (let i = 1; i < 8; i++) {
+                document.getElementById("20" + i).style.backgroundColor = "white";
+            }
+            document.getElementById(333).innerHTML = "Korrekt gelöst";
+
+            // set all button to normal
+            document.getElementById(101).style.backgroundColor = "white";
+            document.getElementById(102).style.backgroundColor = "white";
+            document.getElementById(103).style.backgroundColor = "white";
+            return mode, subject, randomint, arrayAnswers, currentAnswer, last, started, going, correct
+}
+
 function closeOverlay() {document.getElementById("overlay").style.display = "none";}
