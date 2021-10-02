@@ -12,8 +12,8 @@
     <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" href="images/logo.jpg">
     <div class="title">
-        <div class="version">Angaben ohne Gewähr<button class="switchmode" onclick="switchMode()" id="4000">Topo Südamerika</button></div>
-        <div class="name" id="6000">Topo Australien</div>
+        <div class="version"> <div onclick="IAmHere()">Angaben ohne Gewähr</div> <button class="switchmode" onclick="switchMode()" id="4000">Topo Südamerika</button></div>
+        <div class="name" id="6000" onclick="whyamIHere()">Topo Australien</div>
         <div class="credit" id="credit">Version 0.5 <br> created by <a href="https://github.com/Sprudeel">@Sprudeel</a></div>
     </div>
 </head>
@@ -96,6 +96,7 @@
                         <span class="subtitle">Datum und Zeit</span>
                     </h3>
                 </div>
+                
                 <div class="time" id="600"></div>
                 <button id="300" class="close" onclick="hideInfo()">Info schliessen<span class="material-icons md-18 png">chevron_right</span></button>
             </div>
@@ -132,6 +133,6 @@
 
 
 
-
+<script src="index.min.js"></script>
 <script src="source.js"></script>
 </html>
