@@ -381,10 +381,6 @@ function setSubject(inputsubject, buttonId) {
 var aaaa;
 function Game() {
     
-    if(hnujzhj == true) {
-        window.alert("2te Hürde gemeistert!");
-        aaaa = true;
-    }
     // Show Timer Controls
     document.getElementById(555).style.display = "inline-block";
     document.getElementById(556).style.display = "inline-block";
@@ -595,11 +591,6 @@ function Game() {
 // Check if Solution is Correct
 function checkSolution() {
 
-    if(jjjj > 4 && hnujzhj === true && aaaa === true && bdkj === true && document.getElementById(420).value.toLowerCase() === "carlo") {
-        window.alert("Carlo Mode Activated!")
-        document.getElementById(6000).innerHTML = "Carlo Mode";
-        document.getElementById(0).style.backgroundImage = "url('images/funky.jpg')"
-    }
     // If answer is correct go here
     if(currentAnswer.toLowerCase() == document.getElementById(420).value.toLowerCase()) {
         
@@ -648,15 +639,6 @@ function showSolution() {
     document.getElementById(222).className = "text";
     document.getElementById(222).innerHTML = currentAnswer;
 }
-var jjjj = 0;
-function IAmHere() {
-
-    if(jjjj > 4 && hnujzhj === true && aaaa === true && bdkj === true) {
-        window.alert("4 Cool");
-    } else {
-        jjjj++;
-    }
-}
 
 
 
@@ -669,10 +651,6 @@ var bdkj;
 // hide Menu
 function hideMenu() {
 
-    if(hnujzhj === true && aaaa === true) {
-        window.alert("3te Hürde gemeistert!");
-        bdkj = true;
-    }
     var menu = document.getElementById(99);
     var animation = [
         {transform: "translateX(-100%)"}
@@ -776,16 +754,7 @@ setInterval(() => {
     document.getElementById(600).innerHTML = displaydate;
     
 }, 10);
-var ll = 0;
-var hnujzhj = false
-function whyamIHere() {
-    if(ll > 5) {
-        window.alert("Carlo Mode 1te Aktivierungs Hürde Überwunden!");
-        hnujzhj = true
-    } else {
-        ll++;
-    }
-}
+
 
 
 
