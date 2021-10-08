@@ -36,6 +36,8 @@ var lastClick = 0;
 var subject;
 var mode;
 
+var firstTry = true;
+
 
 
 var AallMere = ["Arafurasee", "Golf von Carpentaria", "Grosse Australische Bucht", "Grosses Barrier Riff", "Indischer Ozean", "Korallenmeer", "Ostaustralstrom", "Pazifischer Ozean", "Tasmansee", "Torres-Strasse", "Westaustralstrom"];
@@ -378,7 +380,122 @@ function setSubject(inputsubject, buttonId) {
     // Return Values
     return subject, arrayAnswers, started, length;
 }
-var aaaa;
+
+function startGame() {
+
+    if (location.hash === "#australien") {
+        if(document.getElementById(2004).checked) {
+            switch(subject) {
+                case "stadte":  
+                    arrayAnswers = AminStadte;
+                    break;
+                case "staaten":  
+                    arrayAnswers = AminStaaten;
+                    break;
+                case "flusse":
+                    arrayAnswers = AminFlusse;
+                    break;
+                case "inseln":
+                    arrayAnswers = AminInseln;
+                    break;
+                case "berge":
+                    arrayAnswers = AminBerge;
+                    break;
+                case "meere":
+                    arrayAnswers = AminMere;
+                    break;
+                case "special":
+                    arrayAnswers = AminSpecial;
+                    break;
+            }
+        } else if(!document.getElementById(2004).checked) {
+            switch(subject) {
+                case "stadte":  
+                    arrayAnswers = AallStadte;
+                    break;
+                case "staaten":  
+                    arrayAnswers = AallStaaten;
+                    break;
+                case "flusse":
+                    arrayAnswers = AallFlusse;
+                    break;
+                case "inseln":
+                    arrayAnswers = AallInseln;
+                    break;
+                case "berge":
+                    arrayAnswers = AallBerge;
+                    break;
+                case "meere":
+                    arrayAnswers = AallMere;
+                    break;
+                case "special":
+                    arrayAnswers = AallSpecial;
+                    break;
+            }
+        }
+    } else if (location.hash == "#suedamerika") {
+
+        if(document.getElementById(2004).checked) {
+            switch(subject) {
+                case "stadte":  
+                    arrayAnswers = SminStadte;
+                    break;
+                case "staaten":  
+                    arrayAnswers = SminStaaten;
+                    break;
+                case "flusse":
+                    arrayAnswers = SminFlusse;
+                    break;
+                case "inseln":
+                    arrayAnswers = SminInseln;
+                    break;
+                case "berge":
+                    arrayAnswers = SminBerge;
+                    break;
+                case "meere":
+                    arrayAnswers = SminMeere;
+                    break;
+                case "special":
+                    arrayAnswers = SminSpecial;
+                    break;
+            }
+        } else if(!document.getElementById(2004).checked) {
+            switch(subject) {
+                case "stadte":  
+                    arrayAnswers = SallStadte;
+                    break;
+                case "staaten":  
+                    arrayAnswers = SallStaaten;
+                    break;
+                case "flusse":
+                    arrayAnswers = SallFlusse;
+                    break;
+                case "inseln":
+                    arrayAnswers = SallInseln;
+                    break;
+                case "berge":
+                    arrayAnswers = SallBerge;
+                    break;
+                case "meere":
+                    arrayAnswers = SallMeere;
+                    break;
+                case "special":
+                    arrayAnswers = SallSpecial;
+                    break;
+        }
+    }
+}
+
+    if(mode != null && subject != null) {
+        Game();
+    }
+
+    length = arrayAnswers.length;
+    document.getElementById(333).innerHTML = "Korrekt gelöst " + correct + "/" + length;
+
+    return length;
+}
+
 function Game() {
     
     // Show Timer Controls
@@ -520,6 +637,7 @@ function Game() {
 
     } else if (mode == "learn") {
         
+        firstTry = true;
 
         // check if everything has already been learned
         if(correct == length) {
@@ -584,7 +702,7 @@ function Game() {
 
         
 
-        return last, randomNumber, currentAnswer, started;
+        return last, randomNumber, currentAnswer, started, firstTry;
     }
 }
 
@@ -606,12 +724,15 @@ function checkSolution() {
         document.getElementById(420).style.boxShadow = "0px 0px 10px 10px #2aaf1eb2";
 
         // Show Correct Answer on Correct Answer Board
-        showCorrect(currentAnswer);
-
+        if(mode != "learn") {
+            showCorrect(currentAnswer);
+        }
 
        
         // Update Correct Var
-        correct++;
+        if(mode != "learn") {
+            correct++;
+        }
 
         // Start New Game
         setTimeout(() => {
@@ -620,8 +741,14 @@ function checkSolution() {
 
         // Delete Last Question while in Learm mode
         if (mode == "learn") {
-            arrayAnswers.splice((randomNumber - 1), 1);
-    
+
+            if(firstTry == true) {
+                arrayAnswers.splice((randomNumber - 1), 1);
+                showCorrect(currentAnswer);
+                correct++;
+            }
+
+            
             return arrayAnswers;
         }
         // If answer is incorrect
@@ -629,15 +756,21 @@ function checkSolution() {
         // Set Box Shadow to Red
         document.getElementById(1000).style.boxShadow = "0px 0px 10px 10px #b91313ce";
         document.getElementById(420).style.boxShadow = "0px 0px 10px 10px #b91313ce";
+
+        
     }
 
-    
 }
 
 
 function showSolution() {
     document.getElementById(222).className = "text";
     document.getElementById(222).innerHTML = currentAnswer;
+
+    if(mode == "learn") {
+        firstTry = false;
+    }
+    return firstTry;
 }
 
 
